@@ -10,12 +10,13 @@ RUN apt-get update \
     curl \
     npm \
     git \
+    libpq-dev \
+    pkg-config \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
 COPY . /app
 
-# Install dependencies using uv
 RUN --mount=type=cache,target=/root/.cache/uv \
     --mount=type=bind,source=uv.lock,target=uv.lock \
     --mount=type=bind,source=README.md,target=README.md \
